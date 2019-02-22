@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
-namespace net.core_react_firebase_boilerplate.Controllers
+namespace App.Controllers
 {
     [Route("api/protected")]
     [Authorize]

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-namespace net.core_react_firebase_boilerplate.Controllers
+namespace App.Controllers
 {
     [Route("api/[controller]")]
     public class SampleDataController : Controller

@@ -1,6 +1,6 @@
 {
-  "short_name": "net.core_react_firebase_boilerplate",
-  "name": "net.core_react_firebase_boilerplate",
+  "short_name": "app",
+  "name": "app",
   "icons": [
     {
       "src": "favicon.ico",

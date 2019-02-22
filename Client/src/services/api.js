@@ -30,7 +30,7 @@ const getToken = () => {
       updateUser();
 
       if (firebase.auth().currentUser) {
-        firebase
+        return firebase
           .auth()
           .currentUser.getIdToken()
           .then(token => {

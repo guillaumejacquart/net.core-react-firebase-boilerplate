@@ -1,3 +1,4 @@
+using System;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -8,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 
-namespace net.core_react_firebase_boilerplate
+namespace App
 {
     public class Startup
     {
@@ -22,6 +23,8 @@ namespace net.core_react_firebase_boilerplate
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var firebaseProject = Configuration.GetValue("ASPNETCORE_FirebaseProject", "loves-pounding");
+            Console.WriteLine(firebaseProject);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
             // In production, the React files will be served from this directory
@@ -34,13 +37,13 @@ namespace net.core_react_firebase_boilerplate
                .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                .AddJwtBearer(options =>
                {
-                   options.Authority = "https://securetoken.google.com/loves-pounding";
+                   options.Authority = $"https://securetoken.google.com/{firebaseProject}";
                    options.TokenValidationParameters = new TokenValidationParameters
                    {
                        ValidateIssuer = true,
-                       ValidIssuer = "https://securetoken.google.com/loves-pounding",
+                       ValidIssuer = $"https://securetoken.google.com/{firebaseProject}",
                        ValidateAudience = true,
-                       ValidAudience = "loves-pounding",
+                       ValidAudience = firebaseProject,
                        ValidateLifetime = true,
                        NameClaimType = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/emailaddress",
                    };

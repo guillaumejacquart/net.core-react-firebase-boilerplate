@@ -7,7 +7,7 @@
     <IsPackable>false</IsPackable>
     <SpaRoot>Client\</SpaRoot>
     <DefaultItemExcludes>$(DefaultItemExcludes);$(SpaRoot)node_modules\**</DefaultItemExcludes>
-    <RootNamespace>net.core_react_firebase_boilerplate</RootNamespace>
+    <RootNamespace>App</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
