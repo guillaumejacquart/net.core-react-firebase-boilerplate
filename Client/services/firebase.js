@@ -2,13 +2,14 @@ import firebase from "firebase/app";
 import "firebase/auth";
 
 var config = {
-  apiKey: "AIzaSyCZeumB35TMEcrInQ92-nx2RFPjxM_Fljc",
-  authDomain: "loves-pounding.firebaseapp.com",
-  databaseURL: "https://loves-pounding.firebaseio.com",
-  projectId: "loves-pounding",
-  storageBucket: "loves-pounding.appspot.com",
-  messagingSenderId: "936240455899"
+  apiKey: process.env.firebaseApiKey,
+  authDomain: process.env.authDomain,
+  databaseURL: process.env.databaseURL,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId
 };
+
 if (!firebase.apps.length) {
   firebase.initializeApp(config);
 }

@@ -4,7 +4,6 @@ import {
   Collapse,
   Container,
   Navbar,
-  NavbarBrand,
   NavbarToggler,
   NavItem,
   NavLink
@@ -15,7 +14,6 @@ import { view } from "react-easy-state";
 
 import { user } from "../services/store";
 
-import "../services/firebase";
 import firebase from "firebase/app";
 
 import api from "../services/api";

@@ -15,7 +15,12 @@ class MyDocument extends Document {
     return (
       <html>
         <Head>
-          <style>{`body { margin: 0 } /* custom! */`}</style>
+          <link rel="icon" href="/static/favicon.ico" />
+          <meta
+            name="viewport"
+            content="initial-scale=1.0, width=device-width"
+            key="viewport"
+          />
         </Head>
         <body>
           <Main />
