@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from "firebase/app";
-import { withRouter, Link } from "react-router-dom";
+import Link from "next/link";
+import Router from "next/router";
 import { Alert, Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 class Signup extends React.Component {
@@ -30,7 +31,7 @@ class Signup extends React.Component {
       .auth()
       .createUserWithEmailAndPassword(email, password)
       .then(() => {
-        this.props.history.replace("/");
+        Router.replace("/");
       })
       .catch(e => {
         this.setState({
@@ -80,7 +81,9 @@ class Signup extends React.Component {
           </FormGroup>
           {error && <Alert color="danger">{error}</Alert>}
           <div className="mb-2">
-            <Link to="/login">Already have an account ?</Link>
+            <Link href="/auth/login">
+              <a>Already have an account ?</a>
+            </Link>
           </div>
           <Button>Submit</Button>
         </Form>
@@ -89,4 +92,4 @@ class Signup extends React.Component {
   }
 }
 
-export default withRouter(Signup);
+export default Signup;

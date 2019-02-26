@@ -1,3 +1,4 @@
+import "bootstrap/dist/css/bootstrap.css";
 import React, { Component } from "react";
 import {
   Collapse,
@@ -8,11 +9,18 @@ import {
   NavItem,
   NavLink
 } from "reactstrap";
-import { Link, withRouter } from "react-router-dom";
-import { user } from "../services/store";
-import "./NavMenu.css";
+import Link from "next/link";
+import Router from "next/router";
 import { view } from "react-easy-state";
+
+import { user } from "../services/store";
+
+import "../services/firebase";
 import firebase from "firebase/app";
+
+import api from "../services/api";
+
+import "./NavMenu.css";
 
 class NavMenu extends Component {
   static displayName = NavMenu.name;
@@ -37,7 +45,7 @@ class NavMenu extends Component {
       .auth()
       .signOut()
       .then(() => {
-        this.props.history.replace("/");
+        Router.replace("/");
       });
   };
 
@@ -49,9 +57,9 @@ class NavMenu extends Component {
           light
         >
           <Container>
-            <NavbarBrand tag={Link} to="/">
-              DotNet Core + Firebase + React
-            </NavbarBrand>
+            <Link href="/">
+              <a className="navbar-brand">DotNet Core + Firebase + React</a>
+            </Link>
             <NavbarToggler onClick={this.toggleNavbar} className="mr-2" />
 
             {user.loaded && (
@@ -63,45 +71,36 @@ class NavMenu extends Component {
                 {!user.authenticated && (
                   <ul className="navbar-nav flex-grow">
                     <NavItem>
-                      <NavLink tag={Link} className="text-dark" to="/login">
-                        Login
-                      </NavLink>
+                      <Link href="/auth/login">
+                        <NavLink tag="a">Login</NavLink>
+                      </Link>
                     </NavItem>
                     <NavItem>
-                      <NavLink tag={Link} className="text-dark" to="/signup">
-                        Signup
-                      </NavLink>
+                      <Link href="/auth/signup">
+                        <NavLink tag="a">Sign up</NavLink>
+                      </Link>
                     </NavItem>
                   </ul>
                 )}
                 {user.authenticated && (
                   <ul className="navbar-nav flex-grow">
                     <NavItem>
-                      <NavLink tag={Link} className="text-dark" to="/">
-                        Home
-                      </NavLink>
+                      <Link href="/">
+                        <NavLink tag="a">Home</NavLink>
+                      </Link>
                     </NavItem>
                     <NavItem>
-                      <NavLink
-                        tag={Link}
-                        className="text-dark"
-                        to="/fetch-data"
-                      >
-                        Fetch data
-                      </NavLink>
+                      <Link href="/data">
+                        <NavLink tag="a">Data</NavLink>
+                      </Link>
                     </NavItem>
                     <NavItem>
-                      <NavLink tag={Link} className="text-dark" to="/profile">
-                        Profile
-                      </NavLink>
+                      <Link href="/auth/profile">
+                        <NavLink tag="a">Profile</NavLink>
+                      </Link>
                     </NavItem>
                     <NavItem>
-                      <NavLink
-                        tag="a"
-                        href="#"
-                        className="text-dark"
-                        onClick={this.logout}
-                      >
+                      <NavLink tag="a" href="#" onClick={this.logout}>
                         Logout
                       </NavLink>
                     </NavItem>
@@ -116,4 +115,4 @@ class NavMenu extends Component {
   }
 }
 
-export default withRouter(view(NavMenu));
+export default view(NavMenu);

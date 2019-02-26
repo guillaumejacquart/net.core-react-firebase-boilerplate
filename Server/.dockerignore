@@ -1,5 +1,4 @@
 bin
 obj
-Client/node_modules
 
 Dockerfile

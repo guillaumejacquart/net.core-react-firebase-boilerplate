@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import firebase from "firebase/app";
-import { withRouter, Link } from "react-router-dom";
+import Link from "next/link";
+import Router from "next/router";
 import { Alert, Button, Form, FormGroup, Label, Input } from "reactstrap";
 
 class Login extends React.Component {
@@ -23,7 +24,7 @@ class Login extends React.Component {
       .auth()
       .signInWithEmailAndPassword(email, password)
       .then(() => {
-        this.props.history.replace("/");
+        Router.replace("/");
       })
       .catch(e => {
         this.setState({
@@ -62,7 +63,9 @@ class Login extends React.Component {
           </FormGroup>
           {error && <Alert color="danger">{error}</Alert>}
           <div className="mb-2">
-            <Link to="/forgot-password">Forgot password ?</Link>
+            <Link href="/auth/forgot-password">
+              <a>Forgot password ?</a>
+            </Link>
           </div>
           <Button>Submit</Button>
         </Form>
@@ -71,4 +74,4 @@ class Login extends React.Component {
   }
 }
 
-export default withRouter(Login);
+export default Login;

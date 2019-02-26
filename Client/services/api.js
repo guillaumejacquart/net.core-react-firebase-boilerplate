@@ -1,9 +1,10 @@
 import axios from "axios";
+import "./firebase";
 import firebase from "firebase/app";
 import { user } from "./store";
 
 const api = axios.create({
-  baseURL: "/",
+  baseURL: "https://localhost:5001/",
   timeout: 1000
 });
 
@@ -54,7 +55,6 @@ api.interceptors.request.use(config => {
 });
 
 firebase.auth().onAuthStateChanged(fbUser => {
-  console.log(fbUser);
   updateUser();
 });
 

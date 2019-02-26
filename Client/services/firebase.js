@@ -9,6 +9,8 @@ var config = {
   storageBucket: "loves-pounding.appspot.com",
   messagingSenderId: "936240455899"
 };
-firebase.initializeApp(config);
+if (!firebase.apps.length) {
+  firebase.initializeApp(config);
+}
 
 export default firebase;

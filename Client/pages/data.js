@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import api from "../services/api";
 
-export class FetchData extends Component {
-  static displayName = FetchData.name;
+export default class Data extends Component {
+  static displayName = Data.name;
 
   constructor(props) {
     super(props);
