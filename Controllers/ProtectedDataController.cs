@@ -17,8 +17,6 @@ namespace App.Controllers
         public ProtectedDataController(ApplicationContext context)
         {
             _context = context;
-            _context.Database.EnsureCreated();
-            //_context.Database.Migrate();
         }
 
         [HttpGet("data")]

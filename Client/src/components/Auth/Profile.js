@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { view } from "react-easy-state";
 
-import { user } from "../services/store";
+import { user } from "../../services/store";
 
 class Profile extends React.Component {
   render() {

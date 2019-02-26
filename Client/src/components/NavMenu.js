@@ -67,6 +67,11 @@ class NavMenu extends Component {
                         Login
                       </NavLink>
                     </NavItem>
+                    <NavItem>
+                      <NavLink tag={Link} className="text-dark" to="/signup">
+                        Signup
+                      </NavLink>
+                    </NavItem>
                   </ul>
                 )}
                 {user.authenticated && (
