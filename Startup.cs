@@ -1,10 +1,12 @@
 using System;
+using App.Model;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.SpaServices.ReactDevelopmentServer;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
@@ -24,8 +26,28 @@ namespace App
         public void ConfigureServices(IServiceCollection services)
         {
             var firebaseProject = Configuration.GetValue("ASPNETCORE_FirebaseProject", "loves-pounding");
+            var dbType = Configuration.GetValue("ASPNETCORE_DbType", "sqlite");
+            var connectionString = Configuration.GetValue("ASPNETCORE_ConnectionString", "Data Source=blogging.db");
+
             Console.WriteLine(firebaseProject);
+            Console.WriteLine(dbType);
+            Console.WriteLine(connectionString);
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+
+            services.AddDbContext<ApplicationContext>
+                (options =>
+                {
+                    switch (dbType)
+                    {
+                        case "sqlite":
+                            options.UseSqlite(connectionString);
+                            break;
+                        case "sqlserver":
+                            options.UseSqlServer(connectionString);
+                            break;
+                    }
+                });
 
             // In production, the React files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
@@ -86,7 +108,6 @@ namespace App
                     spa.UseReactDevelopmentServer(npmScript: "start");
                 }
             });
-
         }
     }
 }

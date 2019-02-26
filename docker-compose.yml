@@ -1,0 +1,18 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+     - "5000:80"
+    #command: dotnet ef database update
+    environment: 
+      ASPNETCORE_ConnectionString: server=sqlserver;database=blog;user id=sa;password=LxfMZq15
+      ASPNETCORE_DbType: sqlserver
+    depends_on: 
+      - sqlserver
+
+  sqlserver:
+    image: "microsoft/mssql-server-linux:2017-latest"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: LxfMZq15
