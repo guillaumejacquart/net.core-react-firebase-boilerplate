@@ -4,7 +4,7 @@ import firebase from "firebase/app";
 import { user } from "./store";
 
 const api = axios.create({
-  baseURL: "https://localhost:5001/",
+  baseURL: process.env.apiUrl,
   timeout: 1000
 });
 

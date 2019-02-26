@@ -8,6 +8,7 @@ module.exports = withCSS({
       process.env.databaseURL || "https://loves-pounding.firebaseio.com",
     projectId: process.env.projectId || "loves-pounding",
     storageBucket: process.env.storageBucket || "loves-pounding.appspot.com",
-    messagingSenderId: process.env.messagingSenderId || "936240455899"
+    messagingSenderId: process.env.messagingSenderId || "936240455899",
+    apiUrl: process.env.apiUrl || "https://localhost:5001/"
   }
 });

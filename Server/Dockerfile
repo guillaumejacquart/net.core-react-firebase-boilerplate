@@ -1,6 +1,4 @@
 FROM microsoft/dotnet:sdk AS build-env
-RUN apt-get update && curl -sL https://deb.nodesource.com/setup_11.x | bash -
-RUN apt-get install -y nodejs
 
 WORKDIR /app
 
